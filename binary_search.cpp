@@ -4,11 +4,16 @@
 #include <fstream>
 using namespace std;
 void lectura();
+void Busqueda();
+
 
 void lectura(){
     ifstream archivo;
     string texto;
+    string cedula;
 
+    cout<<"digite numero de cedula: ";
+    cin>>cedula;
     archivo.open("datos.csv",ios::in);
 
     if(archivo.fail()){
@@ -16,13 +21,21 @@ void lectura(){
         exit(1);
     }
 
-    while(!archivo.eof()){
-        getline(archivo,texto);
-        cout<<texto<<endl;
+    while(getline(archivo,texto)){
+        
+        if(cedula == texto){ 
+            cout<<texto<<endl;
+        }
+            
     }
 
     archivo.close();
 
+}
+
+void Busqueda(){
+
+    
 }
 
 
