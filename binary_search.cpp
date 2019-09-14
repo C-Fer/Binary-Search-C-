@@ -9,7 +9,7 @@ void lectura(){
     ifstream archivo;
     string texto;
 
-    archivo.open("datos.csv",ios::in);
+    archivo.open("datos.txt",ios::in);
 
     if(archivo.fail()){
         cout<<"No se pudo abrir el archivo";
@@ -36,8 +36,6 @@ void lectura(){
 
 int main(){
     lectura();
-
-
 
     system("pause");
     return 0;
