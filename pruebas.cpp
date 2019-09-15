@@ -9,18 +9,23 @@ class Persona
 {    
     public: 
   
-    string nombre, cedula; 
-    
-    asignarNombre(string linea) 
+    string nombre, cedula;
+
+    void asignarDatos(string linea) 
     { 
         string delimitador = ";";
         cedula = linea.substr(0, linea.find(delimitador));
         nombre = linea.substr(linea.find(delimitador)+1, linea.length());    
-    } 
-
-    string nombreCedula(){
-        return nombre + " " + cedula;
     }
+
+    string conseguirNombre(){
+        return nombre;
+    }
+
+    string conseguirNumDeCedula(){
+        return cedula;
+    }
+    
 };
 
 class Registro
@@ -38,7 +43,7 @@ class Registro
         int index = 0;
         while(getline(archivo_entrada, linea)) {       
             Persona persona;
-            persona.asignarNombre(linea);
+            persona.asignarDatos(linea);
             personas[index] = persona;
             index = index +1; 
         }     
@@ -47,15 +52,19 @@ class Registro
     void imprimirLista()
     {
         for(int i =0 ; i <= sizeof(personas); i++){
-            cout << personas[i].nombreCedula()<< endl;
+            cout << personas[i].conseguirNombre()<< endl;
+            cout << personas[i].conseguirNumDeCedula()<< endl;
         }
     }
 };
 
 
-class BusquedaBinary
+class BusquedaBinaria
 {
-
+    void busquedaBinaria(int )
+    {
+        ;
+    }
 };
   
 
