@@ -1,67 +1,86 @@
-#include <iostream>
-#include <stdlib.h>
-#include <string.h>
 #include <fstream>
-#include <vector>
+#include <stdlib.h>
+#include <iostream>
+#include <string.h>
+#include <locale.h>
+#include <stdio.h>
 
 using namespace std;
-void lectura();
-void Busqueda();
 
-
-void lectura(){
-    ifstream archivo;
-    int vector[1000]
-    string texto;
+typedef struct{
     string cedula;
-    int tam = 950;
-    int centro;
-    int inf = 0;
-    int sup = tam -1;
-    cout<<"digite numero de cedula: ";
-    cin>>cedula;
-    archivo.open("datos.csv",ios::in);
+    string nombre;
 
-    if(archivo.fail()){
-        cout<<"No se pudo abrir el archivo";
-        exit(1);
-    }
-    while(getline(archivo, texto)){
-        
-    }
+}personas;
 
-
-    while(inf <= sup){
-        centro =((sup - inf)/2)+inf;
-
-        
-        if(cedula == texto){ 
-            cout<<texto<<endl;
-        }
-            
-    }
-
-    archivo.close();
-
-}
-
-void Busqueda(){
-
-    
-}
-
-
-
-
-
-
-
+personas *per;
 
 
 
 int main(){
-    lectura();
+    
+    int cont=0;
+    char temp[950];
+    string ced=" ";
+    cout<<"Ingrese # de cedula: "<<endl;
+    cin>>ced;
+    
+    int tam=950;
+    int sup= tam -1;
+    int centro= 0;
+    int inf=0;
+    
+    FILE *f;
+    f=fopen("datos.csv","r");
+    if(f==NULL){
+        cout<<"No se ha podido abrir el archivo."<<endl;
+        exit(1);
+    }
 
+   
+    rewind(f);
+    
+
+    per=(personas*)malloc(cont*sizeof(personas));
+    if(per==NULL){
+        cout<<"No se ha podido reservar la memoria."<<endl;
+        exit(1);
+    }
+
+    while(inf<=sup){
+        centro =((sup-inf)/2)+inf;
+        int contador =0; 
+        for(int i =0; !feof(f);i++){
+            string aux=" ";
+            fgets(temp,950,f);
+            cont++;
+            if(contador==centro){
+                for(int j=0;aux!=";";j++){
+                    aux = fgetc(f);
+                }
+                if(aux == ced){
+                    cout<<temp[i];
+                }
+                else if(ced < aux){
+                    sup=centro-1;
+                }
+                else{
+                    inf=centro+1;
+                }
+
+            }
+           
+        }
+
+        
+        
+    }
+
+
+
+
+ 
+    
     system("pause");
     return 0;
 }
